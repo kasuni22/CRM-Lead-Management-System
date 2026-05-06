@@ -1,10 +1,11 @@
 import React from 'react';
+import '../layouts/DashboardLayout.css';
 
 const Navbar = () => {
   return (
-    <nav>
-      <h1>Navbar</h1>
-    </nav>
+    <header className="navbar">
+      <h1>CRM Lead Management</h1>
+    </header>
   );
 };
 

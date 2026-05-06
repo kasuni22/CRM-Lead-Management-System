@@ -1,0 +1,107 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 100px);
+  padding: 20px;
+}
+
+.auth-form {
+  background-color: #111111;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.3s ease;
+}
+
+.auth-form:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.auth-form h2 {
+  margin-bottom: 20px;
+  color: var(--text-h);
+}
+
+.auth-input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.auth-input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 16px;
+  background-color: #1a1a1a;
+  color: var(--text-h);
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(255, 107, 0, 0.3);
+}
+
+.auth-button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #ff8c00 0%, #ff5500 100%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 10px;
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.2);
+}
+
+.auth-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
+}
+
+.auth-button:disabled {
+  background: var(--border);
+  box-shadow: none;
+  cursor: not-allowed;
+  color: var(--text);
+}
+
+.auth-error {
+  background-color: #fee2e2;
+  color: #ef4444;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.auth-link {
+  display: block;
+  margin-top: 15px;
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.auth-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
