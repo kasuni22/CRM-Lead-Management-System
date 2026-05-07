@@ -31,14 +31,13 @@ if (NODE_ENV === 'production') {
 // Security and parsing middleware
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || [CLIENT_URL, 'http://localhost:5173'].includes(origin)) {
-        return callback(null, true);
-      }
-      return callback(new Error(`CORS policy does not allow access from origin ${origin}`), false);
-    },
+    origin: [
+      'http://localhost:5173',
+      'https://crm-lead-management-system-phi.vercel.app',
+    ],
     credentials: true,
   })
 );
