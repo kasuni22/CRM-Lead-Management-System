@@ -1,8 +1,5 @@
 import Lead from '../models/Lead.js';
 
-// @desc    Get all leads
-// @route   GET /api/leads
-// @access  Private
 export const getLeads = async (req, res, next) => {
   try {
     const leads = await Lead.find({}).sort({ createdAt: -1 });
@@ -12,9 +9,6 @@ export const getLeads = async (req, res, next) => {
   }
 };
 
-// @desc    Create new lead
-// @route   POST /api/leads
-// @access  Private
 export const createLead = async (req, res, next) => {
   try {
     const { name, email, phone, company, status, source, assignedTo, dealValue } = req.body;
@@ -43,9 +37,6 @@ export const createLead = async (req, res, next) => {
   }
 };
 
-// @desc    Get lead by ID
-// @route   GET /api/leads/:id
-// @access  Private
 export const getLeadById = async (req, res, next) => {
   try {
     const lead = await Lead.findById(req.params.id);
@@ -60,9 +51,6 @@ export const getLeadById = async (req, res, next) => {
   }
 };
 
-// @desc    Update lead
-// @route   PUT /api/leads/:id
-// @access  Private
 export const updateLead = async (req, res, next) => {
   try {
     const lead = await Lead.findById(req.params.id);
@@ -89,15 +77,35 @@ export const updateLead = async (req, res, next) => {
   }
 };
 
-// @desc    Delete lead
-// @route   DELETE /api/leads/:id
-// @access  Private
 export const deleteLead = async (req, res, next) => {
   try {
     const lead = await Lead.findById(req.params.id);
     if (lead) {
       await lead.deleteOne();
       res.json({ message: 'Lead removed' });
+    } else {
+      res.status(404);
+      throw new Error('Lead not found');
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const addNoteToLead = async (req, res, next) => {
+  try {
+    const lead = await Lead.findById(req.params.id);
+
+    if (lead) {
+      const note = {
+        content: req.body.content,
+        createdBy: req.user.name,
+        createdAt: new Date(),
+      };
+
+      lead.notes.push(note);
+      await lead.save();
+      res.status(201).json(lead);
     } else {
       res.status(404);
       throw new Error('Lead not found');
