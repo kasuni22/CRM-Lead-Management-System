@@ -32,12 +32,20 @@ if (NODE_ENV === 'production') {
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://crm-lead-management-system-phi.vercel.app",
+];
+
 app.use(
   cors({
-    origin: [
-      'http://localhost:5173',
-      'https://crm-lead-management-system-phi.vercel.app',
-    ],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
