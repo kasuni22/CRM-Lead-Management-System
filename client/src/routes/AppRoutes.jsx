@@ -9,6 +9,7 @@ import Leads from '../pages/Leads';
 import AddLead from '../pages/AddLead';
 import EditLead from '../pages/EditLead';
 import LeadDetails from '../pages/LeadDetails';
+import Landing from '../pages/Landing';
 
 // Components
 import ProtectedRoute from '../components/ProtectedRoute';
@@ -20,6 +21,7 @@ const AppRoutes = () => {
   return (
     <Routes>
       {/* Public Routes */}
+      <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
@@ -75,8 +77,8 @@ const AppRoutes = () => {
         } 
       />
 
-      {/* Default Route */}
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      {/* Fallback */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };

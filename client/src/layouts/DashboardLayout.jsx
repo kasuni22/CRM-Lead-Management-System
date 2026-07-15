@@ -12,6 +12,10 @@ const DashboardLayout = ({ children }) => {
         <main className="page-content">
           {children}
         </main>
+        <footer className="dashboard-footer">
+          <span>© 2026 CRM. All rights reserved.</span>
+          <span className="dashboard-footer-meta"> · Built with MERN by Kasuni</span>
+        </footer>
       </div>
     </div>
   );
